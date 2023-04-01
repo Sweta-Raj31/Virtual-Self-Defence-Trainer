@@ -1,0 +1,112 @@
+<html>
+<style>
+	* {
+  font-family: sans-serif;
+   background-color:yellow;
+}
+.content-table{
+	background-color: white;
+}
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+ 
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  
+  color: #ffffff;
+  text-align: left;
+  background-color: white;
+  font-weight: bold;
+}
+
+.content-table th{
+	 padding: 12px 15px;
+	 background-color:blue;
+}
+
+.content-table td {
+   padding: 12px 15px;
+   background-color:purple;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: white;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+  background-color: white;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+  background-color: white;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+  background-color: white;
+}
+.h2{
+	background-color: red;
+}
+</style>
+<head>
+	<title>Leader Board!!</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootsrap.min.css">
+      <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+        </script> 
+</head>
+<body>
+	<center>
+<h2>Leader Board!!</h2></center>
+
+ <div id="results">
+ 	<center>
+            <table class="content-table" id="table">
+
+                
+          <thead>
+          <tr>
+         <th>Name   -------    Points</th>
+         
+       </tr>
+        </thead>
+                <tr>
+                    <td class="active-row" id="leaderBoard"></td>
+                </tr>
+            </table>
+           <button onclick="k()">BACK</button>
+           <button onclick="k1()">HOME</button>
+          </center>
+        </div>
+        <script type="text/javascript">
+
+function k() {
+  window.location.replace("quiz2.html");
+}
+
+function k1() {
+  window.location.replace("index.html");
+}  </script>
+         <script src="./assets/js/output1.js"></script>
+</body>
+         </html>
+
+
+        

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+
+  }
+
+  body {
+    font-family: "Montserrat", serif;
+    background-color: #eeeeee;
+  }
+
+  body {
+    font-family: "Montserrat", serif;
+    background-color: #eeeeee;
+  }
+
+  body {
+    background-color: #3bd997;
+    font-family: 'Roboto Slab';
+    color: #fff;
+    font-size: 30px;
+  }
+
+  .wrapper {
+    height: 350px;
+    width: 700px;
+    margin: 40px auto;
+  }
+
+  .quiz-box {
+    height: 100%;
+    border: 3px solid rgba(255, 255, 255, 1);
+    background-color: #000;
+    border-radius: 0px 10%;
+    box-shadow: 0px 0px 13px 2px rgb(0, 0, 0);
+  }
+
+  .navigation-buttons {
+    text-align: center;
+    padding: 10px 0px;
+    float: right;
+  }
+
+  .name-box {
+    text-align: center;
+    padding: 10%;
+    height: 100%;
+  }
+
+  .name-box span {
+    font-weight: 500;
+    font-size: 3em;
+  }
+
+  #name-input-box {
+    height: 45px;
+    padding: 0;
+    margin-top: 20px;
+    font: 400 3rem 'Roboto Slab';
+    letter-spacing: 0.025em;
+    border: none;
+    background: transparent;
+    text-align: center;
+    outline: none;
+    border-bottom: solid thin rgba(238, 238, 238, 0.12);
+  }
+
+  button {
+    border: none;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border-radius: 0px 10px;
+    background: transparent;
+    outline: none;
+  }
+
+  button:hover {
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 0px 10px;
+  }
+
+  button:disabled {
+    display: none;
+  }
+
+  #name-submit-button {
+    margin-top: 30px;
+  }
+
+  .quiz {
+    height: 100%;
+    padding: 10px;
+  }
+
+  #question h2 {
+    font-weight: 600;
+    padding: 20px;
+  }
+
+  .options {
+    height: 70%;
+    height: 100%;
+    padding-left: 20px;
+  }
+
+  .options label {
+    width: 49%;
+  }
+
+
+  /* Radio Button*/
+
+  @-webkit-keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+      outline: none;
+    }
+
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+      outline: none;
+    }
+  }
+
+  @-moz-keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+      outline: none;
+    }
+
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+      outline: none;
+    }
+  }
+
+  @keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+      outline: none;
+    }
+
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+      outline: none;
+    }
+  }
+
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    top: 13px;
+    -webkit-transition: all 0.15s ease-out 0s;
+    -moz-transition: all 0.15s ease-out 0s;
+    transition: all 0.15s ease-out 0s;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .option-input:hover {
+    background: #9faab7;
+    outline: none;
+  }
+
+  .option-input:checked {
+    background: black;
+  }
+
+  .option-input:checked::before {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    content: '\2713';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: white;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+
+  .option-input.radio {
+    border-radius: 50%;
+    outline: none !important;
+    margin-right: 10px;
+    border: 2px solid #fff;
+  }
+
+  .option-input.radio::after {
+    border-radius: 50%;
+    outline: none;
+  }
+
+  label {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 1.3em;
+  }
+
+  /*Pie chart style starts*/
+
+
+  .score-detail,
+  .chart {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    vertical-align: top;
+    margin-top: 10px;
+  }
+
+
+  .easyPieChart {
+    position: relative;
+    text-align: center;
+  }
+
+  .easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .percentage,
+  .label {
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-weight: 100;
+  }
+
+  .percentage {
+    font-size: 17px;
+  }
+
+  sup {
+    top: -0.2em;
+    margin-left: 1px;
+  }
+
+  .ctrl {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #c4cdcc;
+    word-spacing: 5px;
+  }
+
+  /*Pie chart style ends*/
+
+  #result {
+    padding: 10px;
+    height: 100%;
+  }
+
+  #result .score-label h1 {
+    font-weight: 600;
+  }
+
+  #result .score-label h1 i {
+    margin-left: 10px;
+  }
+
+  #result .score-label h1,
+  #result .message {
+    text-align: center;
+  }
+
+  #result .score-detail h3 {
+    margin-top: 19px;
+    padding-left: 15px;
+  }
+
+  #result-stats {
+    padding: 20px;
+  }
+
+  table,
+  td,
+  th {
+    padding: 10px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table td .grey {
+    color: rgba(255, 255, 255, 0.47);
+  }
+
+  th {
+    text-align: left;
+    font-size: 1.2em;
+  }
+
+  #result-stats .fa {
+    margin-right: 5px;
+  }
+
+  #result-stats .fa-check-circle {
+    color: #06ff00;
+  }
+
+  #result-stats .fa-times-circle {
+    color: #ff3d00;
+  }
+
+  .alignm {
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 30px;
+    color: #000;
+  }
+
+  #submit_btn {
+    width: 150px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #c4cdcc;
+    opacity: 0.8;
+
+  }
+
+  #results {
+    width: 150px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #c4cdcc;
+    opacity: 0.7;
+    border: black;
+
+
+  }
+
+  .box {
+    background: #00fc93;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-left: 400px;
+    margin-right: 200px;
+  }
+
+  #gradepercentage {
+
+    margin-top: 20px;
+    padding: 20px;
+
+  }
+</style>
+
+</style>
+
+<head>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase.js"></script>
+</head>
+
+<body>
+
+
+  <center>
+    <div class="game-quiz-container " style="color: #000;">
+      <h2> QUIZ -2 </h2>
+      <br>
+
+      <p style="font-size: 30px;">Enter your name:
+        <input id=name name="name" type="text" size="30" style="padding: 20px ;">
+        <br><br>
+      </p>
+
+      <div class="box">
+        <div class="game-question-container">
+          <h1 id="display-question"></h1>
+        </div>
+        <div class="alignm">
+
+          Q1.Why should your left leg be forward in a basic guard position?<br>
+          <p><input type="radio" name="question1" id="correct1">To protect your liver
+            <br>
+          </p>
+          <p><input type="radio" name="question1">It is a more natural stance
+            <br>
+          </p>
+          <p><input type="radio" name="question1">For better control
+            <br>
+          </p>
+          <p><input type="radio" name="question1">None of the above
+            <br>
+          </p><br>
+
+          Q2.What are some examples of things you can use to distract an aggressor?
+          <br>
+          <p><input type="radio" name="question2">Throw dirt in their face from the ground <br></p>
+          <p><input type="radio" name="question2">See if you have an aerosol can near by
+            <br>
+          </p>
+          <p><input type="radio" name="question2">See if you have a pen or other sharp object in your purse
+            <br>
+          </p>
+          <p><input type="radio" name="question2" id="correct2">All of the above <br></p><br>
+
+          Q3.What are some key attack points?<br>
+          <p><input type="radio" name="question3">Eyes <br></p>
+          <p><input type="radio" name="question3">Groin<br></p>
+          <p><input type="radio" name="question3">Knee<br></p>
+          <p><input type="radio" name="question3" id="correct3">All of the above <br></p><br>
+
+          Q4. A basic guard position is with a staggered stance.<br>
+          <p><input type="radio" name="question4" id="correct4">True<br></p>
+          <p><input type="radio" name="question4">False <br></p>
+          <p><input type="radio" name="question4">Neither a nor b <br></p>
+          <p><input type="radio" name="question4">both <br></p>
+          <br>
+          Q5. Which of these statements is a principle of engagement?<br>
+          <p><input type="radio" name="question5">Use sudden movements to create confusion <br></p>
+          <p><input type="radio" name="question5" id="correct5">Use eye contact as means of confrontation<br></p>
+          <p><input type="radio" name="question5">Always keep your eyes forward to get to your destination quicker<br>
+          </p>
+          <p><input type="radio" name="question5">Be the first one to instigate a fight<br></p><br>
+
+          Q6.You are always encouraged to seek physical confrontations.
+          <br>
+          <p><input type="radio" name="question6">True <br></p>
+          <p><input type="radio" name="question6" id="correct6">False
+            <br>
+          </p>
+          <p><input type="radio" name="question6">Neither a nor b<br></p>
+          <p><input type="radio" name="question6">
+            both <br></p><br>
+
+          Q7.Where is it better to land a blow to someone’s knee?<br>
+          <p><input type="radio" name="question7">To the front of the knee<br></p>
+          <p><input type="radio" name="question7">Just below the knee
+            <br>
+          </p>
+          <p><input type="radio" name="question7" id="correct7">To the side of the knee<br></p>
+          <p><input type="radio" name="question7">None of the above
+            <br>
+          </p><br>
+
+          Q8. You have the right to feel safe in your surroundings.<br>
+          <p><input type="radio" name="question8" id="correct8">True
+            <br>
+          </p>
+          <p><input type="radio" name="question8">False <br></p>
+          </p>
+          <p><input type="radio" name="question8">Neither a nor b <br></p>
+          <p><input type="radio" name="question8">both <br></p><br>
+
+          Q9. What are some primary objectives when training for self defense?<br>
+          <p><input type="radio" name="question9">Learn drills that improve your timing and skills <br></p>
+          <p><input type="radio" name="question9">Learn techniques that allow you to suppress your attacker
+            <br>
+          </p>
+          <p><input type="radio" name="question9" id="correct9">It depends on your surroundings.<br></p>
+          <p><input type="radio" name="question9">All of the above
+            <br>
+          </p>
+          <br>
+          Q10. What are some common ways to be more aware of your surroundings?<br>
+          <p><input type="radio" name="question10">LKeep your doors and windows locked while driving
+
+            <br>
+          </p>
+          <p><input type="radio" name="question10">Keep your valuables hidden from view
+            <br>
+          </p>
+          <p><input type="radio" name="question10">Never walk on deserted streets
+            <br>
+          </p>
+          <p><input type="radio" name="question10" id="correct10">All of the above
+            <br>
+          </p><br>
+        </div>
+      </div>
+      <p style="font-size:30px;display:inline-block" id="scoretext"> Your Score: </p>
+      <input id="gradepercentage" name="score" type="number"> </input> <br> <br>
+      <input type="submit" id="submit_btn" onclick="result()"></input> <br> <br>
+    </div>
+    <p style="font-size: 30px; color: #000;"> Want to check your position among our users..<br>
+      Check the leaderBoard </p>
+    <br>
+
+    <!--<input type="submit" id="results" onclick="k1()"></input>!-->
+    <button id="results" onclick="k1()" style="border: 1px solid black;"> CHECK </button>
+  </center>
+  <button hidden="" id="results" onclick="k1()">
+    <table id="table">
+
+      <td id="leaderBoard"></td>
+
+    </table>
+  </button>
+
+  <script src="./assets/js/output1.js"></script>
+
+  <script type="text/javascript">
+    function k1() {
+      window.location.replace("k1.html");
+    }
+
+    function result() {
+
+      var score = 0;
+      //score = document.getElementById("grade-percentage").value;
+      if (document.getElementById('correct1').checked) {
+        score++;
+      }
+      if (document.getElementById('correct2').checked) {
+        score++;
+      }
+      if (document.getElementById('correct3').checked) {
+        score++;
+      }
+      if (document.getElementById('correct4').checked) {
+        score++;
+      }
+      if (document.getElementById('correct5').checked) {
+        score++;
+      }
+      if (document.getElementById('correct6').checked) {
+        score++;
+      }
+      if (document.getElementById('correct7').checked) {
+        score++;
+      }
+      if (document.getElementById('correct8').checked) {
+        score++;
+      }
+      if (document.getElementById('correct9').checked) {
+        score++;
+      }
+      if (document.getElementById('correct10').checked) {
+        score++;
+      }
+
+      //var input = document.getElementById("btn");
+      alert("Your score is:" + score);
+      var ele = document.getElementById("gradepercentage");
+      //var score = "";
+      // if (ele) {
+      //     score = ele.value;
+      // }
+      //var ele=document.getElementById("gradepercentage");
+      ele.value = score;
+
+
+      //-score = document.getElementById("grade-percentage");
+      // score.document.getElementById("score") ;
+      // to print on browser
+      // document.write("Your score is:"+score);
+    }
+  </script>
+  <script src="./assets/js/output1.js"></script>
+</body>
+
+</html>
